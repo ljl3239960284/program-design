@@ -44,8 +44,8 @@ int main(){
     printf("%s\n", str2); // 输出字符串
     
     int str3;
-    str3 = (int)str + (int)str2;
-    printf("%d",str3);
+    str3 = atoi(str) + atoi(str2);
+    printf("sum = %d",str3);
 
     return 0;
 }
