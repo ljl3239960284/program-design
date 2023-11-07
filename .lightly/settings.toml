@@ -1,0 +1,26 @@
+ports = []
+[languages.clang]
+language = "clang"
+[languages.clang.run."hw2.3.c"]
+name = "hw2.3.c"
+path = "/workspace/program-design/c/class4/class4/hw2.3.c"
+
+[languages.clang.run."hw2.2.c"]
+name = "hw2.2.c"
+path = "/workspace/program-design/c/class4/class4/hw2.2.c"
+
+[languages.clang.run."hw2.7.c"]
+name = "hw2.7.c"
+path = "/workspace/program-design/c/class4/class4/hw2.7.c"
+
+[languages.clang.run."Hw2.5.c"]
+name = "Hw2.5.c"
+path = "/workspace/program-design/c/class4/class4/Hw2.5.c"
+
+[languages.clang.run."hw2.6.c"]
+name = "hw2.6.c"
+path = "/workspace/program-design/c/class4/class4/hw2.6.c"
+
+[languages.clang.run."Hw2.4.c"]
+name = "Hw2.4.c"
+path = "/workspace/program-design/c/class4/class4/Hw2.4.c"
