@@ -2,13 +2,13 @@
 #include<stdlib.h>
 
 int main(){
-    int a[50];
-    printf("please input:")
-    gets (a);
-    for (int i = 0;i<50 && i != '\0' ; i++){
+    char a[50];
+    printf("please input:");
+    fgets (a,sizeof(a),stdin);
+    for (int i = 0;i<50 && a[i] != '\0' ; i++){
         char b = a[i];
-        char c = b + 3;
-        a[i] = c;
+        b = b + 2;
+        a[i] = b;
     }
     printf("%s",a);
 
