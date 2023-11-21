@@ -1,70 +1,82 @@
-#include <stdio.h>
+#include<stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include<time.h>
 
-#define ROWS 6
-#define COLS 6
-#define MINES 8
+int main(){
+    int N = 30;
+    char a[N][N];
+    srand(time(NULL));
 
-void placeMines(char board[ROWS][COLS], int mines) {
-    for (int i = 0; i < mines; i++) {
-        int row = rand() % ROWS;
-        int col = rand() % COLS;
-
-        if (board[row][col] == '@') {
-            i--;
-        } else {
-            board[row][col] = '@';
+    for(int i = 0;i<N;i++){
+        for(int n = 0;n<N;n++){
+            a[i][n] = '0';
         }
     }
-}
 
-void printBoard(char board[ROWS][COLS]) {
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            printf("%c\t", board[i][j]);
+    int v;
+    for(int i = 0;;i++){
+        printf("input:");
+        scanf("%d",&v);
+        if(v <= 900 && v>= 0)
+            break;
+        else printf("please input between [0,900]\n");
+    }
+
+    for(int g=0;g<v;g++){
+        a[rand()%30][rand()%30] = '@';
+    }
+
+    /*
+    for(int i = 0;i<N;i++){
+        for(int n = 0;n<N;n++){
+            printf("%c  ",a[i][n]);
         }
         printf("\n");
     }
-}
+    */
 
-int countMines(char board[ROWS][COLS], int row, int col) {
-    int count = 0;
-    for (int i = row - 1; i <= row + 1; i++) {
-        for (int j = col - 1; j <= col + 1; j++) {
-            if (i >= 0 && i < ROWS && j >= 0 && j < COLS && board[i][j] == '@') {
-                count++;
-            }
+    
+    for(int i = 0;i<N;i++){
+        for(int n = 0;n<N;n++){
+            if(a[i][n]!='@'){
+                int m = 0;
+                if(a[i-1][n-1]== '@' && i-1>=0 && n-1>=0)
+                    m++;
+                
+                if(a[i][n-1]=='@' && n-1>=0)
+                    m++;
+
+                if (a[i+1][n-1]=='@' && i+1<30 && n-1<=0)
+                    m++;
+
+                if(a[i-1][n]=='@' && i-1>=0 )
+                    m++;
+
+                if(a[i+1][n]=='@'&& i+1<30)
+                    m++;
+
+                if(a[i-1][n+1]=='@' && i-1>=0 && n+1<30)
+                    m++;
+
+                if(a[i][n+1]=='@' && n+1<30)
+                    m++;
+
+                if(a[i+1][n+1]=='@' && n+1<30 && i+1<30)
+                    m++;
+                a[i][n] = m;
+            }else continue;
         }
     }
-    return count;
-}
 
-void fillNumbers(char board[ROWS][COLS]) {
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            if (board[i][j] != '@') {
-                int count = countMines(board, i, j);
-                if (count > 0) {
-                    board[i][j] = count + '0';
-                }
-            }
+
+    for(int i = 0;i<N;i++){
+        for(int n = 0;n<N;n++){
+            if(a[i][n]=='@')
+            printf("%c  ",a[i][n]);
+            else printf("%d  ",a[i][n]);
         }
+        printf("\n");
     }
-}
-
-int main() {
-    srand(time(0));
-    char board[ROWS][COLS];
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            board[i][j] = '0';
-        }
-    }
-
-    placeMines(board, MINES);
-    fillNumbers(board);
-    printBoard(board);
-
+     
     return 0;
 }
